@@ -119,6 +119,10 @@
         }
     };
 
+	    function getTransactionUrl(id) {
+        return transactionExplorer.replace('{symbol}', lastStats.config.symbol.toLowerCase()).replace('{id}', id);
+    }
+	
     $.fn.update = function(txt){
         var el = this[0];
         if (el.textContent !== txt)
@@ -286,6 +290,10 @@
         updateText('poolVersion', lastStats.config.version);
     }
 
+	function getBlockchainUrl(id) {
+        return blockchainExplorer.replace('{symbol}', lastStats.config.symbol.toLowerCase()).replace('{id}', id);
+    }
+	
     $(function(){
         $.get(api + '/stats', function(data){
             lastStats = data;
