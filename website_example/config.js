@@ -1,5 +1,7 @@
 var api = "http://xrypool.com:8117";
 
+var coinUnits = 1000000;
+
 var poolHost = "xrypool.com";
 
 var irc = "irc.freenode.net/#xrypool";

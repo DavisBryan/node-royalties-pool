@@ -1,7 +1,6 @@
 {
     "coin": "Royalties",
     "symbol": "XRY",
-    "coinUnits": 1000000,
 	
     "logging": {
         "files": {
