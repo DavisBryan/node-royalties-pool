@@ -211,7 +211,7 @@ Explanation for each field:
     "banning": {
         "enabled": true,
         "time": 600, //How many seconds to ban worker for
-        "invalidPercent": 25, //What percent of invalid shares triggers ban
+        "invalidPercent": 40, //What percent of invalid shares triggers ban
         "checkThreshold": 30 //Perform check when this many shares have been submitted
     },
     /* [Warning: several reports of this feature being broken. Proposed fix needs to be tested.] 
@@ -228,12 +228,12 @@ Explanation for each field:
 /* Module that sends payments to miners according to their submitted shares. */
 "payments": {
     "enabled": true,
-    "interval": 600, //how often to run in seconds
+    "interval": 60, //how often to run in seconds
     "maxAddresses": 50, //split up payments if sending to more than this many addresses
     "mixin": 3, //number of transactions yours is indistinguishable from
-    "transferFee": 5000000000, //fee to pay for each transaction
-    "minPayment": 100000000000, //miner balance required before sending payment
-    "denomination": 100000000000 //truncate to this precision and store remainder
+    "transferFee": 100, //fee to pay for each transaction
+    "minPayment": 10000, //miner balance required before sending payment
+    "denomination": 100000 //truncate to this precision and store remainder
 },
 
 /* Module that monitors the submitted block maturities and manages rounds. Confirmed

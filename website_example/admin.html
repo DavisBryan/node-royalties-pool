@@ -69,9 +69,9 @@
         };
 
 
-        function getReadableCoins(coins){
-            return (parseInt(coins || 0) / coinUnits).toFixed(coinUnits.toString().length - 1);
-        }
+		function getReadableCoins(coins) {
+			return (parseInt(coins || 0) / lastStats.config.coinUnits).toFixed(lastStats.config.coinUnits.toString().length - 1);
+		}
 
         function getStats(promptPassword){
 
