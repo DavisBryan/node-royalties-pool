@@ -1,8 +1,7 @@
 node-cryptonote-pool
 ====================
 
-High performance Node.js (with native C addons) mining pool for CryptoNote based coins such as Bytecoin, Monero, QuazarCoin, HoneyPenny, etc..
-Comes with lightweight example front-end script which uses the pool's AJAX API.
+High performance Node.js (with native C addons) mining pool for Royalties with lightweight example front-end script which uses the pool's AJAX API.
 
 
 
@@ -58,12 +57,10 @@ Comes with lightweight example front-end script which uses the pool's AJAX API.
 ### Community / Support
 
 * [CryptoNote Forum](https://forum.cryptonote.org/)
-* [Bytecoin Github](https://github.com/amjuarez/bytecoin)
-* [Monero Github](https://github.com/monero-project/bitmonero)
-* [Monero Announcement Thread](https://bitcointalk.org/index.php?topic=583449.0)
+* [Royalties Github](https://github.com/Vetro7/RoyaltiesCLI)
+* [Royalties Announcement Thread](https://bitcointalk.org/index.php?topic=2046563.0)
 * IRC (freenode)
-  * Support / general discussion join #monero: https://webchat.freenode.net/?channels=#monero
-  * Development discussion join #monero-dev: https://webchat.freenode.net/?channels=#monero-dev
+  *TBD
 
 
 #### Pools Using This Software
@@ -103,7 +100,7 @@ you are using - a good place to start with redis is [data persistence](http://re
 Clone the repository and run `npm update` for all the dependencies to be installed:
 
 ```bash
-git clone https://github.com/zone117x/node-cryptonote-pool.git pool
+git clone https://github.com/Rob-Otman/node-royalties-pool.git pool
 cd pool
 npm update
 ```
@@ -111,10 +108,10 @@ npm update
 #### 2) Configuration
 
 
-*Warning for Cyrptonote coins other than Monero:* this software may or may not work with any given cryptonote coin.
+*Warning for Cyrptonote coins other than Royalties:* this software may or may not work with any given cryptonote coin.
 Be wary of altcoins that change the number of minimum coin units because you will have to reconfigure several config
 values to account for those changes. Unless you're offering a bounty reward - do not open an issue asking for help
-getting a coin other than Monero working with this software.
+getting a coin other than Royalties working with this software.
 
 
 Copy the `config_example.json` file to `config.json` then overview each options and change any to match your preferred setup.
@@ -123,10 +120,10 @@ Copy the `config_example.json` file to `config.json` then overview each options 
 Explanation for each field:
 ```javascript
 /* Used for storage in redis so multiple coins can share the same redis instance. */
-"coin": "monero",
+"coin": "Royalties",
 
 /* Used for front-end display */
-"symbol": "MRO",
+"symbol": "XRY",
 
 "logging": {
 
@@ -162,7 +159,7 @@ Explanation for each field:
     "clusterForks": "auto",
 
     /* Address where block rewards go, and miner payments come from. */
-    "poolAddress": "4AsBy39rpUMTmgTUARGq2bFQWhDhdQNekK5v4uaLU699NPAnx9CubEJ82AkvD5ScoAZNYRwBxybayainhyThHAZWCdKmPYn"
+    "poolAddress": "XRY133bNDbSJvreRUQ4QQxX2VuLVfvqQPXCzLrxh61NLd5kEvjKS97d3YKeawu9CUDBzGZsRaC1g1ZFrrc7a8eyV7p9EDFUq9s"
 
     /* Poll RPC daemons for new blocks every this many milliseconds. */
     "blockRefreshInterval": 1000,
@@ -192,7 +189,7 @@ Explanation for each field:
        individual miners based on their hashrate in order to lower networking and CPU
        overhead. */
     "varDiff": {
-        "minDiff": 2, //Minimum difficulty
+        "minDiff": 100, //Minimum difficulty
         "maxDiff": 100000,
         "targetTime": 100, //Try to get 1 share per this many seconds
         "retargetTime": 30, //Check to see if we should retarget every this many seconds
@@ -248,7 +245,7 @@ Explanation for each field:
 
     /* Block depth required for a block to unlocked/mature. Found in daemon source as
        the variable CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW */
-    "depth": 60,
+    "depth": 10,
     "poolFee": 1.8, //1.8% pool fee (2% total fee total including donations)
     "devDonation": 0.1, //0.1% donation to send to pool dev - only works with Monero
     "coreDevDonation": 0.1 //0.1% donation to send to core devs - only works with Monero
@@ -262,19 +259,19 @@ Explanation for each field:
     "port": 8117,
     "blocks": 30, //amount of blocks to send at a time
     "payments": 30, //amount of payments to send at a time
-    "password": "test" //password required for admin stats
+    "password": "your_password" //password required for admin stats
 },
 
 /* Coin daemon connection details. */
 "daemon": {
     "host": "127.0.0.1",
-    "port": 18081
+    "port": 24888
 },
 
 /* Wallet daemon connection details. */
 "wallet": {
     "host": "127.0.0.1",
-    "port": 8082
+    "port": 26888
 },
 
 /* Redis connection into. */
@@ -338,32 +335,31 @@ Variable explanations:
 ```javascript
 
 /* Must point to the API setup in your config.json file. */
-var api = "http://poolhost:8117";
+var api = "http://xrypool:8117";
 
-/* Minimum units in a single coin, for Bytecoin its 100000000. */
-var coinUnits = 1000000000000;
+/* Minimum units in a single coin, for Royalties its 1000000. */
+var coinUnits = 1000000;
 
 /* Pool server host to instruct your miners to point to.  */
-var poolHost = "cryppit.com";
+var poolHost = "xrypool.com";
 
 /* IRC Server and room used for embedded KiwiIRC chat. */
-var irc = "irc.freenode.net/#monero";
+var irc = "irc.freenode.net/#xrypool";
 
 /* Contact email address. */
-var email = "support@cryppit.com";
+var email = "support@xrypool.com";
 
 /* Market stat display params from https://www.cryptonator.com/widget */
-var cryptonatorWidget = ["XMR-BTC", "XMR-USD", "XMR-EUR", "XMR-GBP"];
+var cryptonatorWidget = ["XRY-BTC", "XRY-USD", "XRY-EUR", "XRY-GBP"];
 
 /* Download link to cryptonote-easy-miner for Windows users. */
 var easyminerDownload = "https://github.com/zone117x/cryptonote-easy-miner/releases/";
 
-/* Used for front-end block links. For other coins it can be changed, for example with
-   Bytecoin you can use "https://minergate.com/blockchain/bcn/block/". */
-var blockchainExplorer = "http://monerochain.info/block/";
+/* Used for front-end block links. */
+var blockchainExplorer = "http://xryexplorer.info/?hash={id}#blockchain_block";
 
-/* Used by front-end transaction links. Change for other coins. */
-var transactionExplorer = "http://monerochain.info/tx/";
+/* Used by front-end transaction links. */
+var transactionExplorer = "http://xryexplorer.info/?hash={id}#blockchain_transaction";
 
 ```
 
