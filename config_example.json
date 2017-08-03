@@ -80,7 +80,7 @@
         "mixin": 3,
         "transferFee": 1000,
         "minPayment": 10000,
-        "denomination": 100000
+        "denomination": 10000
     },
 
     "blockUnlocker": {

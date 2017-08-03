@@ -231,9 +231,9 @@ Explanation for each field:
     "interval": 60, //how often to run in seconds
     "maxAddresses": 50, //split up payments if sending to more than this many addresses
     "mixin": 3, //number of transactions yours is indistinguishable from
-    "transferFee": 100, //fee to pay for each transaction
+    "transferFee": 1000, //fee to pay for each transaction
     "minPayment": 10000, //miner balance required before sending payment
-    "denomination": 100000 //truncate to this precision and store remainder
+    "denomination": 10000 //truncate to this precision and store remainder(SET TO minPayment VALUE)
 },
 
 /* Module that monitors the submitted block maturities and manages rounds. Confirmed
