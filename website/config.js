@@ -10,7 +10,7 @@ var email = "support@xrypool.com";
 
 var cryptonatorWidget = ["XRY-BTC", "XRY-USD", "XRY-EUR", "XRY-GBP"];
 
-var easyminerDownload = "https://github.com/zone117x/cryptonote-easy-miner/releases/";
+var easyminerDownload = "https://xry.io/#download";
 
 var blockchainExplorer = "http://xryexplorer.info/?hash={id}#blockchain_block";
 
