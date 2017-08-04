@@ -205,7 +205,7 @@
             updateText('blockchainHeight', lastStats.network.height.toString());
             updateText('networkLastReward', getReadableCoins(lastStats.network.reward, 4));
             updateText('lastHash', lastStats.network.hash.substr(0, 13) + '...').setAttribute('href',
-                blockchainExplorer + lastStats.network.hash
+                getBlockchainUrl(lastStats.network.hash)
             );
 
             updateText('poolHashrate', getReadableHashRateString(lastStats.pool.hashrate) + '/sec');
